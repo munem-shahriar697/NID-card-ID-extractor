@@ -7,19 +7,6 @@ const captureButton = document.getElementById('capture-btn');
 const video = document.getElementById('video');
 let stream;
 let isCapturing = false;
-let file;
-// Function to convert data URL to Blob
-function dataURLtoBlob(dataURL) {
-  const arr = dataURL.split(',');
-  const mime = arr[0].match(/:(.*?);/)[1];
-  const bstr = atob(arr[1]);
-  let n = bstr.length;
-  const u8arr = new Uint8Array(n);
-  while (n--) {
-    u8arr[n] = bstr.charCodeAt(n);
-  }
-  return new Blob([u8arr], { type: mime });
-}
 
 // Function to capture a photo from the webcam
 function capturePhoto() {
@@ -29,17 +16,9 @@ function capturePhoto() {
   canvas.getContext('2d').drawImage(video, 0, 0, canvas.width, canvas.height);
   const photoURL = canvas.toDataURL();
 
-  // Create a blob from the data URL
-  const blob = dataURLtoBlob(photoURL);
-
-  // Create a File object from the blob
-  file = new File([blob], 'input-image.jpg');
-
-  // Set the selected image and file name
-  previewImage.src = URL.createObjectURL(file);
-  fileName.textContent = file.name;
-
-  // Stop capturing from the webcam
+  // Display the captured photo
+  previewImage.src = photoURL;
+  fileName.textContent = 'webcam-capture.png';
   stopCapture();
 }
 
@@ -71,7 +50,7 @@ function stopCapture() {
 
 // Event listener for image upload
 imageUpload.addEventListener('change', function (event) {
-  file = event.target.files[0];
+  const file = event.target.files[0];
   fileName.textContent = file ? file.name : '';
   if (file) {
     const reader = new FileReader();
@@ -86,12 +65,7 @@ imageUpload.addEventListener('change', function (event) {
 
 // Event listener for submit button
 submitButton.addEventListener('click', function () {
-  if(captureButton){
-    file = file;
-  }
-  else{
-    file = imageUpload.files[0];
-  }
+  const file = imageUpload.files[0];
   const formData = new FormData();
   formData.append('image', file);
 
