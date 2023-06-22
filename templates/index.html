@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Deep Learning Based NID Number Recognizer</title>
   <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-  <link rel="icon" href="/banking-system.png" type="image/x-icon">
+  <link rel="icon" href="/static/banking-system.png" type="image/x-icon">
 
   <style>
     .preview-image {
@@ -162,19 +162,21 @@
         <input type="file" id="image-upload" class="border py-2 px-4 rounded w-full">
       </div>
       <div class="mb-4">
-        <button id="submit-btn" class="bg-blue-500 hover:bg-blue-600 font-medium py-2 px-4 rounded w-full">Submit</button>
+        <button id="submit-btn"
+          class="bg-blue-500 hover:bg-blue-600 font-medium py-2 px-4 rounded w-full">Submit</button>
       </div>
       <div class="mb-4 border rounded-md p-4">
         <p class="font-bold">Selected Image:</p>
         <p id="file-name" class="font-medium"></p>
-        <img id="preview-image" class="mt-2 preview-image" src="#" alt="Preview Image">
+        <!-- <img id="preview-image" class="mt-2 preview-image" src="#" alt="Preview Image"> -->
       </div>
       <div class="pb-24 font-bold">
         <p class="text-xl text-teal-600">Output:</p>
         <p id="nid-number" class="font-medium"></p>
       </div>
       <div class="webcam-section">
-        <button id="capture-btn" class="bg-blue-500 hover:bg-blue-600 font-medium py-2 px-4 rounded w-full">Capture Photo</button>
+        <button id="capture-btn" class="bg-blue-500 hover:bg-blue-600 font-medium py-2 px-4 rounded w-full">Capture
+          Photo</button>
         <video id="video" autoplay></video>
       </div>
     </div>
